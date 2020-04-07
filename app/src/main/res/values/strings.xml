@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Proof Of Concept</string>
+    <string name="failed_to_load">Failed to load data</string>
+    <string name="no_internet">No internet connection found !</string>
+</resources>

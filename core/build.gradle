@@ -1,0 +1,54 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner rootProject.ext.testInstrumentationRunner
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+    dataBinding {
+        enabled = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //AndroidX dependencies with some Ui libraries
+    api "androidx.appcompat:appcompat:$androidXAppCompat"
+    api "androidx.core:core-ktx:$coreKtx"
+    api "androidx.constraintlayout:constraintlayout:$constraintLayout"
+    api "com.google.android.material:material:$materialDesign"
+
+    //Networking related dependencies
+    api "com.google.code.gson:gson:$gson"
+    api "com.squareup.retrofit2:retrofit:$retrofit"
+    api "com.squareup.retrofit2:converter-gson:$gsonConverter"
+    api "com.squareup.okhttp3:logging-interceptor:$loggingIntercepter"
+    api "com.readystatesoftware.chuck:library:$chuck"
+
+    testImplementation "junit:junit:$jUnit"
+    androidTestImplementation "androidx.test.ext:junit:$jUnitExt"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCore"
+}
